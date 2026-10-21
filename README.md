@@ -125,7 +125,7 @@ open reports
 
 ## Check that the run succeeded
 
-The terminal should print dataset and class counts, train/validation/test counts, initial and final training losses, learned coefficients, a validation threshold table, and the selected threshold (`0.6`). Near the end, it should print that it saved both CSV files. Open `reports/` to see the three output files named above.
+The terminal should print dataset and class counts, train/validation/test counts, initial and final training losses, learned coefficients, a seven-row validation threshold table, the selected threshold (`0.6`), and a ten-row "Assignment comparison results" table. Near the end, it should print that it saved both CSV files. Open `reports/` to see the three output files named above.
 
 The script took approximately **19 seconds on the author's Mac** in one local run. Your computer may take more or less time, especially on the first run. Small differences in the last decimal places can occur with different package versions; the broad results and file names should agree.
 

@@ -41,7 +41,7 @@ I fitted unregularized scikit-learn logistic regression on the same scaled train
 | Mean radius, standardized | 3.6567942 | 3.6567942 |
 | Mean texture, standardized | 1.0098715 | 1.0098715 |
 
-The mean absolute difference in their validation probabilities for malignancy was about `1.19 × 10⁻¹⁰`, supporting the NumPy calculation. The prior-only `DummyClassifier` assigned every case the training malignant proportion, `127/341 ≈ 0.3724`. At threshold 0.50 it classified every test case as benign: accuracy was `0.631579`, but malignant recall was zero. Thus accuracy alone hides missed malignant cases.
+The mean absolute difference in their validation probabilities for malignancy was about `1.19 × 10⁻¹⁰`, supporting the NumPy calculation. The prior-only `DummyClassifier` assigned every case the training malignant proportion, `127/341 ≈ 0.3724`. At threshold 0.50 it classified every test case as benign: accuracy was `0.631579`, but malignant recall was zero. Because it predicted no malignant cases, precision has a zero denominator; I report it as 0 using the assignment's `zero_division=0` convention. Its F1 is also 0. Thus accuracy alone hides missed malignant cases.
 
 ## Part 5: Threshold Selection and Test Results
 

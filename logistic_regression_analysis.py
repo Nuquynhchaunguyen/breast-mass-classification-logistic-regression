@@ -338,6 +338,7 @@ for split_name, scaled_features, true_labels in [
 
 # 17. Print a readable comparison table in the terminal.
 print("\nAssignment comparison results:")
+print("TN: benign -> benign; FP: benign -> malignant; FN: malignant -> benign; TP: malignant -> malignant")
 print(
     f"{'split':<11} {'model':<9} {'policy':<8} {'cutoff':>6} "
     f"{'TN':>3} {'FP':>3} {'FN':>3} {'TP':>3} "
