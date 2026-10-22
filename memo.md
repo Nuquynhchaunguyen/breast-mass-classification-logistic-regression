@@ -23,7 +23,7 @@ I used the Breast Cancer Wisconsin (Diagnostic) dataset bundled with scikit-lear
 | Validation | 114 | 71 | 43 |
 | Test | 114 | 72 | 42 |
 
-Stratified splits with `random_state=42` preserved similar class proportions. Checks found no overlapping rows, and all 569 observations were assigned. I fitted `StandardScaler` on training rows only and applied that fitted scaler to validation and test rows. This prevents those held-out rows from influencing preprocessing.
+I first split row indices into development and test sets with `test_size=0.20`, `stratify=y`, and `random_state=42`. I then split the development indices into training and validation sets with `test_size=0.25`, stratifying on the development labels and again using `random_state=42`. Because validation is 25% of the remaining 80%, the overall split is approximately 60% training, 20% validation, and 20% test. Checks found no overlapping rows, and all 569 observations were assigned. I fitted `StandardScaler` on training rows only and applied that fitted scaler to validation and test rows. This prevents those held-out rows from influencing preprocessing.
 
 ## Part 3: NumPy Logistic Regression
 

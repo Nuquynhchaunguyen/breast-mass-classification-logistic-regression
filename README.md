@@ -10,7 +10,7 @@ The script loads the Breast Cancer Wisconsin (Diagnostic) dataset bundled with s
 
 The dataset has 569 observations. This project uses only two features, in this order: `mean radius` and `mean texture`. The script recodes the target so **1 = malignant** (the positive class) and **0 = benign**. There are 212 malignant and 357 benign observations.
 
-Using `random_state=42` and stratification, the script creates training (341 observations), validation (114), and test (114) sets. It fits `StandardScaler` on the training set only, then uses that fitted scaler on validation and test data. The test set is kept separate until the threshold has been selected using validation results.
+The script first reserves 20% of row indices for the test set (`test_size=0.20`), then uses 25% of the remaining development indices for validation (`test_size=0.25`). Both splits are stratified and use `random_state=42`. This gives approximately 60% training (341 observations), 20% validation (114), and 20% test (114). It fits `StandardScaler` on the training set only, then uses that fitted scaler on validation and test data. The test set is kept separate until the threshold has been selected using validation results.
 
 The three comparison methods are:
 
