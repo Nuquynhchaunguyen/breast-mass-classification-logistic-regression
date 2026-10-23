@@ -1,4 +1,8 @@
-"""Prepare data and compare two-feature logistic regression models."""
+"""Prepare data and compare two-feature logistic regression models.
+
+Assignment map: Part 1's four manual score examples are in memo.md.
+Parts 2-6 are implemented below and marked where each part begins.
+"""
 
 import csv
 from pathlib import Path
@@ -13,6 +17,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
+# Part 1: The four manual score examples and explanations are in memo.md.
+# Part 2: Prepare a leakage-free experiment.
 # Find the reports folder relative to this script, not the terminal's folder.
 PROJECT_DIR = Path(__file__).resolve().parent
 REPORTS_DIR = PROJECT_DIR / "reports"
@@ -109,6 +115,7 @@ print("Training scale:", scaler.scale_)
 print("Scaled training mean:", X_train_scaled.mean(axis=0))
 
 
+# Part 3: Implement NumPy logistic regression.
 # 6. Add an intercept column to the training matrix.
 # The other two columns are standardized radius and texture.
 X_train_aug = np.column_stack(
@@ -179,6 +186,7 @@ plt.close()
 print("Saved reports/training_loss.png")
 
 
+# Part 4: Compare with scikit-learn and a prior-only baseline.
 # 12. Fit scikit-learn logistic regression on the same training data.
 # C=np.inf disables regularization for comparison with the NumPy model.
 sklearn_model = LogisticRegression(
@@ -219,6 +227,7 @@ print(
 print("Baseline malignant probability:", baseline_val_prob[0])
 
 
+# Part 5: Select a threshold using validation data, then evaluate.
 # 13. Choose a threshold using NumPy validation probabilities only.
 # Keep the test set untouched while making this decision.
 thresholds = [0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80]
@@ -245,6 +254,7 @@ selected_threshold = max(
 print("Selected threshold:", selected_threshold)
 
 
+# Part 6: Export the seven validation-threshold results.
 # 14. Save the validation threshold sweep.
 with open(
     REPORTS_DIR / "threshold_results.csv",
@@ -277,6 +287,7 @@ with open(
 print("Saved reports/threshold_results.csv")
 
 
+# Part 5 continued: Evaluate the frozen models and selected threshold.
 # 15. Calculate confusion counts and evaluation metrics.
 # Class 1 is malignant, so FN means a missed malignant case.
 def evaluate_predictions(y_true, probabilities, threshold):
@@ -336,6 +347,7 @@ for split_name, scaled_features, true_labels in [
         )
 
 
+# Part 6 continued: Print and export the final comparison results.
 # 17. Print a readable comparison table in the terminal.
 print("\nAssignment comparison results:")
 print("TN: benign -> benign; FP: benign -> malignant; FN: malignant -> benign; TP: malignant -> malignant")
